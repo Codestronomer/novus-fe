@@ -11,7 +11,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <section className="w-full bg-gradient-to-tr from-[#1B183C] to-[#2F2B8E] py-2">
+    <section className="w-full gradient-background py-2">
       <div className="mt-3.5 mx-auto text-center">
         <h2 className="text-2xl font-semibold text-white">Trusted by Other Web3 Industry Leaders</h2>
       </div>

@@ -74,7 +74,7 @@ const Roadmap = () => {
           <h4 className="md:w-[55%] text-xl">The roadmap illustrates what we&apos;re working on. We are continously updating it based on your
           <span className='text-[#F342E8]'> feedback</span>.</h4>
         </div>
-        <div className="flex flex-row justify-around">
+        <div className="flex flex-wrap justify-around">
           <RoadmapSection title="Pre-Launch" milestones={preLaunchMileStones} />
           <RoadmapSection title="Post-Launch" milestones={postLaunchMileStones} />
         </div>

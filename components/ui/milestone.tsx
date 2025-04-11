@@ -5,7 +5,7 @@ import Line from '@/public/Landing/Line 16.svg';
 
 const Milestone = ({ index, title, content, isFinalItem }: MileStoneItemType) => {
   return (
-    <div className="flex flex-row gap-5 pb-3">
+    <div className="flex flex-row gap-5 pb-3 text-white">
       <div className="flex flex-col gap-5">
         <div className="bg-gradient-to-b from-[#3737CE] to-[#2379BC] rounded-full w-[60px] h-[60px] flex items-center justify-center">
           <span className="text-4xl font-bold text-center">{ index }</span>
