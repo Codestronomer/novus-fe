@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .gradient-heading {
+    @apply bg-gradient-to-r from-[#55ADFF] to-[#E741DC] bg-clip-text text-transparent
+  }
+}
+
