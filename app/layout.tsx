@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 const spaceGrotesk = Space_Grotesk({
-  variable: '--font-space-grotesk',
-  subsets: ["latin"]
-})
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased max-w-screen w-screen overflow-x-hidden`}
       >
         {children}
       </body>
