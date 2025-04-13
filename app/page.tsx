@@ -15,8 +15,8 @@ export default function Home() {
         <div className="gradient-background">
           <AboutUs />
           <WhatSetsUsApart />
+          <Roadmap />
         </div>
-        <Roadmap />
         <Contact />
       </main>
       <footer>

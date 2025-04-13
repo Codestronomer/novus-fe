@@ -11,7 +11,7 @@ import { Button } from '../ui/button';
 const Footer = () => {
   return (
     <section className="bg-[#282F6E] text-white flex flex-col gap-[40px] pt-[60px] pb-[25px] px-[20px] md:px-[40px] lg:px-[70px]">
-      <div className="flex flex-wrap gap-2 justify-between">
+      <div className="flex flex-wrap gap-6 lg:gap-4 justify-between">
         <div className="w-fit">
           <Image src={Novus} alt="novus-acedemy" />
         </div>
@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
       </div>
       <div className='flex flex-wrap-reverse md:flex-wrap lg:flex-wrap gap-3 justify-between'>
-        <div className='flex flex-wrap-reverse md:flex-wrap lg:flex-wrap gap-[30px] justify-between'>
+        <div className='flex flex-wrap-reverse md:flex-wrap lg:flex-wrap gap-[30px] lg:gap-[50px] justify-between'>
           <p>© 2025 Novus Academy. All rights reserved.</p>
           <div className="flex flex-col md:flex-row lg:flex-row gap-[20px] underline cursor-pointer">
             <span>Privacy pollcy</span>

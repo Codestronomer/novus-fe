@@ -53,7 +53,7 @@
   }
 
   .gradient-background {
-    @apply bg-gradient-to-tr from-[#1B183C] to-[#2F2B8E];
+    @apply bg-gradient-to-bl from-[#1B183C] to-[#2F2B8E];
   }
 }
 
