@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <div className="w-screen max-w-screen overflow-x-hidden min-h-screen font-[family-name:var(--font-space-grotesk)]">
       <main className="w-full">
-        <h1 className="text-5xl text-center m-8">Novus Academy+</h1>
         <Header />
         <Partners />
         <div className="gradient-background">

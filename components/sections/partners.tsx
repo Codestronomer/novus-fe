@@ -15,7 +15,7 @@ const Partners = () => {
       <div className="mt-3.5 mx-auto text-center">
         <h2 className="text-2xl font-semibold text-white">Trusted by Other Web3 Industry Leaders</h2>
       </div>
-      <div className="flex flex-wrap gap-8 justify-center items-center">
+      <div className="flex flex-wrap w-[50%] lg:w-full gap-8 justify-center items-center">
         {partners.map((partner) => (
           <Image
             key={partner.id}
