@@ -28,7 +28,7 @@ const WaitlistPage = () => {
     console.log('Email: ', email);
   }
   return (
-    <div className="relative w-screen min-h-screen py-[40px] px-[110px] gradient-background">
+    <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
       {/* Logo */}
       <Image src={Novus} alt="novus" />
       {/* Bottom Blur */}
@@ -40,28 +40,35 @@ const WaitlistPage = () => {
       <motion.div
         animate="jump"
         transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
-        className="flex justify-center items-center gap-2"
+        className="w-[90%]"
       >
-        <motion.div className="will-change-transform absolute left-[350px] bottom-[150px] z-0" variants={dotVariants}>
+        <motion.div className="will-change-transform absolute left-0 bottom-0 lg:left-[350px] lg:bottom-[150px] z-0" variants={dotVariants}>
           <Image src={Abstract3d} alt="abstract" />
         </motion.div>
       </motion.div>
 
-      {/* Main Text */}
-      <div
-        className="flex flex-col lg:flex-row pt-[50px] justify-around items-center z-10"
-      >
-        <div className=" h-[600px] pt-[150px] text-left justify-self-start self-start">
-          <h2 className="text-4xl md:text-5xl lg:text-[65px] text-white font-bold">MVP Coming <span className="bg-gradient-to-t from-[#F36E15] to-[#74DB89] bg-clip-text text-transparent">Soon!</span></h2>
+      {/* Main Text & Form */}
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-center pt-[50px] gap-12 w-full">
+        {/* Left Text  */}
+        <div className="flex-1 pt-[150px] text-left mb-10 lg:mb-0 justify-self-center items-center lg:justify-self-start lg:self-start z-10 max-w-[600px]">
+          <h2 className="text-4xl md:text-5xl lg:text-[65px] text-white font-bold">
+            MVP Coming{" "}
+            <span className="bg-gradient-to-t from-[#F36E15] to-[#74DB89] bg-clip-text text-transparent">
+              Soon!
+            </span>
+          </h2>
         </div>
-        <div className="min-w-fit lg:min-w-[550px] px-[80px] py-[100px] flex flex-col gap-[70px] bg-white/30 backdrop-blur-md rounded-lg">
+
+        {/* Form Card */}
+        <div className="flex-1 w-full max-w-[550px] px-6 sm:px-6 md:px-8 lg:px-[60px] py-[100px] bg-white/30 backdrop-blur-md rounded-lg flex flex-col gap-[70px] z-10">
           <div className="text-center">
-            <h2 className="text-white text-[30px] font-bold">Join Our <span className="text-[#F342E8]">Waitlist</span></h2>
+            <h2 className="text-white text-[30px] font-bold w-full">Join Our <span className="text-[#F342E8]">Waitlist</span></h2>
             <p className="text-[#CED0E4] text-sm">Stay updated and Join the Movement</p>
           </div>
+
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 w-full max-w-[500px] justify-center items-center"
+            className="flex flex-col gap-4 w-full justify-center items-center"
           >
             <label htmlFor="email" className="text-[#CED0E4] self-start">Email address</label>
             <input
@@ -77,11 +84,11 @@ const WaitlistPage = () => {
             </Button>
           </form>
           <div className="flex flex-col gap-4">
-            <Button className="w-full h-[45px] rounded-xl flex justify-center gap-2" variant="secondary" size="lg">
+            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2" variant="secondary" size="lg">
               <Image src={MetaMask} alt="metamask" />
               Join with Metamask
             </Button>
-            <Button className="w-full h-[45px] rounded-xl" variant="secondary" size="lg">
+            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center" variant="secondary" size="lg">
               <Image src={OpenCampus} alt="open campus" />
               Join with OCID
             </Button>

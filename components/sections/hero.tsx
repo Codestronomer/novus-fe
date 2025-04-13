@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import HeroImg from "@/public/Landing/home-img.svg";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -17,9 +18,11 @@ const Hero = () => {
           and curious minds in the Web3 space.
         </p>
         <div className="flex justify-center lg:justify-start">
-          <Button className="bg-[#534CFF] w-[150px]" size="lg">
-            Join Waitlist
-          </Button>
+          <Link href='/waitlist'>
+            <Button className="bg-[#534CFF] w-[150px]" size="lg">
+              Join Waitlist
+            </Button>
+          </Link>
         </div>
       </div>
       <Image className=" lg:max-w-[40%] xl:max-w-full" src={HeroImg} alt="" />

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import NovusAcademy from "@/public/Landing/novusacademy.svg";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,9 +37,11 @@ const Navbar = () => {
       </ul>
 
       {/* Desktop Button */}
-      <Button className="hidden lg:block bg-white text-black text-sm" size="lg">
-        Join Waitlist
-      </Button>
+      <Link href="/waitlist" className="hidden lg:block">
+        <Button className="hidden lg:block bg-white text-black text-sm" size="lg">
+          Join Waitlist
+        </Button>
+      </Link>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
@@ -49,9 +52,11 @@ const Navbar = () => {
             <li className="cursor-pointer hover:text-gray-300">Why us</li>
             <li className="cursor-pointer hover:text-gray-300">Roadmap</li>
             <li className="pt-2">
-              <Button className="w-full bg-white text-black text-sm" size="lg">
-                Join Waitlist
-              </Button>
+              <Link href="/waitlist">
+                <Button className="w-full bg-white text-black text-sm" size="lg">
+                  Join Waitlist
+                </Button>
+              </Link>
             </li>
           </ul>
         </div>
