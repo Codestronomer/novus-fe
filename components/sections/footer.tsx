@@ -56,11 +56,11 @@ const Footer = () => {
                 id="email"
                 type="email"
                 placeholder="Your email here"
-                className="bg-[rgba(255,255,255,0.2)] rounded-md h-[30px] text-center text-white w-full"
+                className="bg-[rgba(255,255,255,0.2)] rounded-md h-[40px] text-center text-white w-full"
               />
             </div>
             <div className="w-full">
-              <Button className="h-[30px] w-full bg-[rgba(255,255,255,0.2)] text-white">
+              <Button className="h-[40px] w-full bg-[rgba(255,255,255,0.2)] text-white">
                 <h2 className="text-white">Subscribe</h2>
               </Button>
             </div>

@@ -9,7 +9,7 @@ interface RoadmapSectionProps {
 
 const RoadmapSection = ({ title, milestones }: RoadmapSectionProps) => {
   return (
-    <div className="flex flex-col gap-[70px]">
+    <div className="flex flex-col gap-5 lg:gap-[70px] mb-5">
       <h2
         className="text-[40px] gradient-heading font-bold w-fit"
       >
