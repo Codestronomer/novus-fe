@@ -4,7 +4,7 @@ import Image from "next/image";
 import InstructorLedLearning from "@/public/Landing/instructor-ll.svg";
 import OnChainCertification from "@/public/Landing/on-chain-cert.svg";
 import CryptoPoweredPayments from "@/public/Landing/cryptopowered.svg";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type Feature = {
   title: React.ReactNode;
