@@ -18,7 +18,15 @@ const Partners = () => {
           Trusted by Other Web3 Industry Leaders
         </h2>
       </div>
-      <div className="flex flex-col gap-2 justify-center items-center">
+      <div
+        className="flex flex-col gap-2 justify-center items-center max-w-7xl mx-auto"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
+          maskImage:
+            "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
+        }}
+      >
         <Marquee pauseOnHover={true} pauseOnClick={false} speed={100}>
           {[...partners, ...partners].map((partner) => (
             <Image
