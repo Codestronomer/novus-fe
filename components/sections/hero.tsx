@@ -12,7 +12,7 @@ const Hero = () => {
       <div className="flex flex-col gap-5 text-center lg:text-left">
         {/* Title */}
         <motion.h1
-          className="text-[2rem] lg:text-[2.5rem] xl:text-[4rem] font-medium tracking-tighter text-white"
+          className="text-[2rem] leading-8 lg:text-[2.5rem] lg:leading-12 xl:text-[4rem] xl:leading-tight font-medium tracking-tighter text-white"
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
