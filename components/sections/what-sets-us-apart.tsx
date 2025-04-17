@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import InstructorLedLearning from "@/public/Landing/instructor-ll.svg";
 import OnChainCertification from "@/public/Landing/on-chain-cert.svg";
 import CryptoPoweredPayments from "@/public/Landing/cryptopowered.svg";
+import { motion } from "framer-motion";
 
 type Feature = {
   title: React.ReactNode;
@@ -49,7 +51,13 @@ const WhatSetsUsApart = () => {
   return (
     <section className="relative flex flex-col gap-10 md:gap-16 lg:gap-20 pt-10 md:pt-13 text-white pb-16 md:pb-[8.75rem]">
       <div className="absolute -top-10 md:-top-13 right-0 w-[200px] h-[240px] md:w-[319px] md:h-[382px] bg-[#ADAAFC]/14 rounded-full blur-3xl pointer-events-none z-2"></div>
-      <div className="flex flex-col items-center text-center px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-col items-center text-center px-4"
+      >
         <h2 className="text-3xl md:text-4xl lg:text-5xl">
           <span>What Sets </span> <span className="text-[#F342E8]">Us</span>{" "}
           <span>Apart</span>
@@ -61,11 +69,15 @@ const WhatSetsUsApart = () => {
           </span>{" "}
           <span className="text-[#F342E8]">experts.</span>
         </p>
-      </div>
+      </motion.div>
       <div className="flex flex-col gap-10 md:gap-[5.625rem]">
         {features.map((feature, index) => (
-          <div
+          <motion.div
             key={index}
+            initial={{ opacity: 0, x: index % 2 === 0 ? 60 : -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
             className={`flex flex-col-reverse md:flex-row ${
               index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
             } items-center justify-between gap-5 xl:gap-[5.5rem] max-w-7xl mx-auto px-4`}
@@ -83,7 +95,7 @@ const WhatSetsUsApart = () => {
               alt=""
               layout="responsive"
             />
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

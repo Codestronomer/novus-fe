@@ -8,7 +8,7 @@ import WhatSetsUsApart from "@/components/sections/what-sets-us-apart";
 
 export default function Home() {
   return (
-    <div className="w-screen max-w-screen overflow-x-hidden min-h-screen font-[family-name:var(--font-space-grotesk)]">
+    <div className="w-screen max-w-screen overflow-x-hidden min-h-screen font-[family-name:var(--font-space-grotesk)] gradient-background">
       <main className="w-full">
         <Header />
         <Partners />
