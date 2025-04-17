@@ -1,12 +1,13 @@
-'use client'
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { motion, Variants } from 'motion/react';
-import Abstract3d from '@/public/abstract-3d.svg';
-import MetaMask from '@/public/metamask-logo.svg';
-import Novus from '@/public/novus-logo-and-name.svg';
-import OpenCampus from '@/public/open_campus_logo.svg.svg';
+"use client";
+import Image from "next/image";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { motion, Variants } from "motion/react";
+import Abstract3d from "@/public/abstract-3d.svg";
+import MetaMask from "@/public/metamask-logo.svg";
+import Novus from "@/public/novus-logo-and-name.svg";
+import OpenCampus from "@/public/open_campus_logo.svg.svg";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const dotVariants: Variants = {
   jump: {
@@ -18,15 +19,15 @@ const dotVariants: Variants = {
       ease: "easeInOut",
     },
   },
-}
+};
 
 const WaitlistPage = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email: ', email);
-  }
+    console.log("Email: ", email);
+  };
   return (
     <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
       {/* Logo */}
@@ -42,7 +43,10 @@ const WaitlistPage = () => {
         transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
         className="w-[90%]"
       >
-        <motion.div className="will-change-transform absolute left-0 bottom-0 lg:left-[350px] lg:bottom-[150px] z-0" variants={dotVariants}>
+        <motion.div
+          className="will-change-transform absolute left-0 bottom-0 lg:left-[350px] lg:bottom-[150px] z-0"
+          variants={dotVariants}
+        >
           <Image src={Abstract3d} alt="abstract" />
         </motion.div>
       </motion.div>
@@ -62,15 +66,21 @@ const WaitlistPage = () => {
         {/* Form Card */}
         <div className="flex-1 w-full max-w-[550px] px-6 sm:px-6 md:px-8 lg:px-[60px] py-[100px] bg-white/30 backdrop-blur-md rounded-lg flex flex-col gap-[70px] z-10">
           <div className="text-center">
-            <h2 className="text-white text-[30px] font-bold w-full">Join Our <span className="text-[#F342E8]">Waitlist</span></h2>
-            <p className="text-[#CED0E4] text-sm">Stay updated and Join the Movement</p>
+            <h2 className="text-white text-[30px] font-bold w-full">
+              Join Our <span className="text-[#F342E8]">Waitlist</span>
+            </h2>
+            <p className="text-[#CED0E4] text-sm">
+              Stay updated and Join the Movement
+            </p>
           </div>
 
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-4 w-full justify-center items-center"
           >
-            <label htmlFor="email" className="text-[#CED0E4] self-start">Email address</label>
+            <label htmlFor="email" className="text-[#CED0E4] self-start">
+              Email address
+            </label>
             <input
               required
               id="email"
@@ -79,16 +89,132 @@ const WaitlistPage = () => {
               onChange={(e) => setEmail(e.target.value)}
               className="h-[45px] w-full outline-none bg-white placeholder-[#9F9F9F]/80 rounded-lg px-4"
             />
-            <Button className="w-full h-[45px] rounded-xl bg-[#534CFF]" size="lg">
+            <Button
+              className="w-full h-[45px] rounded-xl bg-[#534CFF]"
+              size="lg"
+            >
               Submit
             </Button>
           </form>
           <div className="flex flex-col gap-4">
-            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2" variant="secondary" size="lg">
+            {/* <Button
+              className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
+              variant="secondary"
+              size="lg"
+            >
               <Image src={MetaMask} alt="metamask" />
               Join with Metamask
             </Button>
-            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center" variant="secondary" size="lg">
+            <ConnectButton /> */}
+
+            <ConnectButton.Custom>
+              {({
+                account,
+                chain,
+                openAccountModal,
+                openChainModal,
+                openConnectModal,
+                authenticationStatus,
+                mounted,
+              }) => {
+                // Note: If your app doesn't use authentication, you
+                // can remove all 'authenticationStatus' checks
+                const ready = mounted && authenticationStatus !== "loading";
+                const connected =
+                  ready &&
+                  account &&
+                  chain &&
+                  (!authenticationStatus ||
+                    authenticationStatus === "authenticated");
+
+                return (
+                  <div
+                    {...(!ready && {
+                      "aria-hidden": true,
+                      style: {
+                        opacity: 0,
+                        pointerEvents: "none",
+                        userSelect: "none",
+                      },
+                    })}
+                  >
+                    {(() => {
+                      if (!connected) {
+                        return (
+                          <Button
+                            onClick={openConnectModal}
+                            className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
+                            variant="secondary"
+                            size="lg"
+                          >
+                            <Image src={MetaMask} alt="metamask" />
+                            Join with Metamask
+                          </Button>
+                        );
+                      }
+
+                      if (chain.unsupported) {
+                        return (
+                          <Button
+                            onClick={openChainModal}
+                            className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
+                            variant="secondary"
+                            size="lg"
+                          >
+                            <Image src={MetaMask} alt="metamask" />
+                            Switch Network
+                          </Button>
+                        );
+                      }
+
+                      return (
+                        <div style={{ display: "flex", gap: 12 }}>
+                          <button
+                            onClick={openChainModal}
+                            style={{ display: "flex", alignItems: "center" }}
+                            type="button"
+                          >
+                            {chain.hasIcon && (
+                              <div
+                                style={{
+                                  background: chain.iconBackground,
+                                  width: 12,
+                                  height: 12,
+                                  borderRadius: 999,
+                                  overflow: "hidden",
+                                  marginRight: 4,
+                                }}
+                              >
+                                {chain.iconUrl && (
+                                  <img
+                                    alt={chain.name ?? "Chain icon"}
+                                    src={chain.iconUrl}
+                                    style={{ width: 12, height: 12 }}
+                                  />
+                                )}
+                              </div>
+                            )}
+                            {chain.name}
+                          </button>
+
+                          <button onClick={openAccountModal} type="button">
+                            {account.displayName}
+                            {account.displayBalance
+                              ? ` (${account.displayBalance})`
+                              : ""}
+                          </button>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                );
+              }}
+            </ConnectButton.Custom>
+            <Button
+              className="w-full h-[45px] rounded-xl flex justify-center items-center"
+              variant="secondary"
+              size="lg"
+            >
               <Image src={OpenCampus} alt="open campus" />
               Join with OCID
             </Button>
@@ -96,7 +222,7 @@ const WaitlistPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WaitlistPage
+export default WaitlistPage;
