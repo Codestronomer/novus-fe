@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { MileStoneItemType } from "@/types";
 import Line from "@/public/Landing/Line 16.svg";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const Milestone = ({
   index,
