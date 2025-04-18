@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+import axios from "axios";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, Variants } from "motion/react";
 import Abstract3d from "@/public/abstract-3d.svg";
@@ -8,6 +10,8 @@ import MetaMask from "@/public/metamask-logo.svg";
 import Novus from "@/public/novus-logo-and-name.svg";
 import OpenCampus from "@/public/open_campus_logo.svg.svg";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { toast } from "sonner";
+import { useAccount } from "wagmi";
 
 const dotVariants: Variants = {
   jump: {
@@ -23,11 +27,38 @@ const dotVariants: Variants = {
 
 const WaitlistPage = () => {
   const [email, setEmail] = useState("");
+  const { address, isConnected } = useAccount();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email: ", email);
+    console.log(email);
+    try {
+      toast.loading("Joining Waitlist");
+      const res = await axios.post("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          user_id: email,
+          connection_type: "email",
+        },
+      });
+
+      toast.dismiss();
+      toast.success("Successfully joined waitlist");
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.dismiss();
+        toast.error(error.response.data.error);
+      } else {
+        toast.dismiss();
+        toast.error("An error occured while joining waitlist");
+      }
+    }
   };
+
+  // useEffect(()=> {},[addres])
   return (
     <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
       {/* Logo */}
@@ -120,6 +151,7 @@ const WaitlistPage = () => {
                 // Note: If your app doesn't use authentication, you
                 // can remove all 'authenticationStatus' checks
                 const ready = mounted && authenticationStatus !== "loading";
+                const isJoined = true; //await fetch("/api/waitlist");
                 const connected =
                   ready &&
                   account &&
@@ -152,6 +184,20 @@ const WaitlistPage = () => {
                           </Button>
                         );
                       }
+                      // if (isJoined) {
+                      //   return (
+                      //     <Button
+                      //       disabled
+                      //       onClick={openConnectModal}
+                      //       className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
+                      //       variant="secondary"
+                      //       size="lg"
+                      //     >
+                      //       <Image src={MetaMask} alt="metamask" />
+                      //       Already Joined Waitlist
+                      //     </Button>
+                      //   );
+                      // }
 
                       if (chain.unsupported) {
                         return (
@@ -186,7 +232,7 @@ const WaitlistPage = () => {
                                 }}
                               >
                                 {chain.iconUrl && (
-                                  <img
+                                  <Image
                                     alt={chain.name ?? "Chain icon"}
                                     src={chain.iconUrl}
                                     style={{ width: 12, height: 12 }}

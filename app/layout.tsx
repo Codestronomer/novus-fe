@@ -3,6 +3,7 @@ import { Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./Providers";
 import "@rainbow-me/rainbowkit/styles.css";
+import { Toaster } from "sonner";
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -33,7 +34,10 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased max-w-screen w-screen overflow-x-hidden`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Toaster richColors />
+          {children}
+        </Providers>
       </body>
     </html>
   );
