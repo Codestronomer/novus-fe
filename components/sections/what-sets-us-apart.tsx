@@ -79,7 +79,7 @@ const WhatSetsUsApart = () => {
             </div>
             <Image
               src={feature.iconImg || "/placeholder.svg"}
-              className="max-w-[20rem] md:max-w-full "
+              className="max-w-[20rem] md:max-w-[50%] rounded-lg"
               alt=""
               layout="responsive"
             />
