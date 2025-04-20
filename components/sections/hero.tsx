@@ -2,7 +2,7 @@
 import React from "react"
 import { Button } from "../ui/button"
 import Image from "next/image"
-import HeroImg from "@/public/Landing/home-img.svg"
+import HeroImg from "@/public/Landing/home-img2.png"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
