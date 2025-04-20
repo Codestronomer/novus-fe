@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import HeroImg from "@/public/Landing/hero.webp";
+import HeroImg from "@/public/Landing/home-img.webp";
 import Link from "next/link";
 import { motion } from "motion/react";
 
