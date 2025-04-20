@@ -51,7 +51,7 @@ const Hero = () => {
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, delay: 0.2 }}
-        className="w-full h-full lg:max-w-[40%] xl:max-w-full flex justify-center items-center"
+        className="w-full h-full lg:max-w-[40%] md:max-w-[50%] xl:max-w-full flex justify-center items-center"
       >
         <Image className="" src={HeroImg || "/placeholder.svg"} alt="" />
       </motion.div>
