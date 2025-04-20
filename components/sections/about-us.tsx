@@ -1,9 +1,9 @@
-"use client"
-import React from "react"
-import Image from "next/image"
-import WhaiIsNa from "@/public/Landing/what-is-na.svg"
-import { motion } from "framer-motion"
+"use client";
 
+import Image from "next/image";
+import React from "react";
+import WhaiIsNa from "@/public/Landing/what-is-na.svg";
+import { motion } from "framer-motion";
 
 const containerVariants = {
   hidden: { opacity: 0 },

@@ -1,14 +1,17 @@
-'use client'
-import Image from 'next/image';
-import React, { useState,useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { motion, Variants } from 'motion/react';
-import Abstract3d from '@/public/abstract-3d.svg';
-import MetaMask from '@/public/metamask-logo.svg';
-import Novus from '@/public/novus-logo-and-name.svg';
-import OpenCampus from '@/public/open_campus_logo.svg.svg';
-import LoginButton from '@/components/OCLoginButton'
-import { useOCAuth } from '@opencampus/ocid-connect-js';
+
+"use client";
+import axios from "axios";
+import Image from "next/image";
+import React, {useState } from "react";
+import { Button } from "@/components/ui/button";
+import { motion, Variants } from "motion/react";
+import Abstract3d from "@/public/abstract-3d.svg";
+import MetaMask from "@/public/metamask-logo.svg";
+import Novus from "@/public/novus-logo-and-name.svg";
+import OpenCampus from "@/public/open_campus_logo.svg.svg";
+//import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { toast } from "sonner";
+//import { useAccount } from "wagmi";
 
 const dotVariants: Variants = {
   jump: {
@@ -20,25 +23,31 @@ const dotVariants: Variants = {
       ease: "easeInOut",
     },
   },
-}
+};
 
 const WaitlistPage = () => {
   const [email, setEmail] = useState('');
-  const { isInitialized, authState, ocAuth } = useOCAuth();
-//loading state
-if (!isInitialized) {
-  return <div>Loading...</div>;
-}
 
-if (authState.error) {
-  return <div>Error: {authState.error.message}</div>;
-}
-
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email: ', email);
-  }
+    console.log(email);
+    try {
+      toast.loading("Joining Waitlist");
+
+      toast.dismiss();
+      toast.success("Successfully joined waitlist");
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.dismiss();
+        toast.error(error.response.data.error);
+      } else {
+        toast.dismiss();
+        toast.error("An error occured while joining waitlist");
+      }
+    }
+  };
+
+  // useEffect(()=> {},[addres])
   return (
     <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
       {/* Logo */}
@@ -54,7 +63,10 @@ if (authState.error) {
         transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
         className="w-[90%]"
       >
-        <motion.div className="will-change-transform absolute left-0 bottom-0 lg:left-[350px] lg:bottom-[150px] z-0" variants={dotVariants}>
+        <motion.div
+          className="will-change-transform absolute left-0 bottom-0 lg:left-[350px] lg:bottom-[150px] z-0"
+          variants={dotVariants}
+        >
           <Image src={Abstract3d} alt="abstract" />
         </motion.div>
       </motion.div>
@@ -74,15 +86,21 @@ if (authState.error) {
         {/* Form Card */}
         <div className="flex-1 w-full max-w-[550px] px-6 sm:px-6 md:px-8 lg:px-[60px] py-[100px] bg-white/30 backdrop-blur-md rounded-lg flex flex-col gap-[70px] z-10">
           <div className="text-center">
-            <h2 className="text-white text-[30px] font-bold w-full">Join Our <span className="text-[#F342E8]">Waitlist</span></h2>
-            <p className="text-[#CED0E4] text-sm">Stay updated and Join the Movement</p>
+            <h2 className="text-white text-[30px] font-bold w-full">
+              Join Our <span className="text-[#F342E8]">Waitlist</span>
+            </h2>
+            <p className="text-[#CED0E4] text-sm">
+              Stay updated and Join the Movement
+            </p>
           </div>
 
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-4 w-full justify-center items-center"
           >
-            <label htmlFor="email" className="text-[#CED0E4] self-start">Email address</label>
+            <label htmlFor="email" className="text-[#CED0E4] self-start">
+              Email address
+            </label>
             <input
               required
               id="email"
@@ -91,26 +109,31 @@ if (authState.error) {
               onChange={(e) => setEmail(e.target.value)}
               className="h-[45px] w-full outline-none bg-white placeholder-[#9F9F9F]/80 rounded-lg px-4"
             />
-            <Button className="w-full h-[45px] rounded-xl bg-[#534CFF]" size="lg">
+            <Button
+              className="w-full h-[45px] rounded-xl bg-[#534CFF]"
+              size="lg"
+            >
               Submit
             </Button>
           </form>
           <div className="flex flex-col gap-4">
-            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2" variant="secondary" size="lg">
+            <Button
+              className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
+              variant="secondary"
+              size="lg"
+            >
               <Image src={MetaMask} alt="metamask" />
               Join with Metamask
             </Button>
-            {authState.isAuthenticated ? (
-        <p>You are logged in! {JSON.stringify(ocAuth.getAuthState())}</p>
-        
-      ) : (
-        <LoginButton />
-      )}
+            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center" variant="secondary" size="lg">
+              <Image src={OpenCampus} alt="open campus" />
+              Join with OCID
+            </Button>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WaitlistPage
+export default WaitlistPage;

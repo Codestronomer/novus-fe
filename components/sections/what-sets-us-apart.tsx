@@ -1,10 +1,10 @@
-"use client"
-import type React from "react"
-import Image from "next/image"
-import InstructorLedLearning from "@/public/Landing/instructor-ll.svg"
-import OnChainCertification from "@/public/Landing/on-chain-cert.svg"
-import CryptoPoweredPayments from "@/public/Landing/cryptopowered.svg"
-import { motion } from "framer-motion"
+"use client";
+import React from "react";
+import Image from "next/image";
+import InstructorLedLearning from "@/public/Landing/instructor-ll.svg";
+import OnChainCertification from "@/public/Landing/on-chain-cert.svg";
+import CryptoPoweredPayments from "@/public/Landing/cryptopowered.svg";
+import { motion } from "framer-motion";
 
 type Feature = {
   title: React.ReactNode

@@ -1,10 +1,11 @@
-"use client"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import type { MileStoneItemType } from "@/types"
-import RoadmapSection from "../ui/roadmapSection"
-import NovusLogo from "@/public/Landing/novus.svg"
-import VisionImage from "@/public/Landing/visionimage.svg"
+"use client";
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { MileStoneItemType } from "@/types";
+import RoadmapSection from "../ui/roadmapSection";
+import NovusLogo from "@/public/Landing/novus.svg";
+import VisionImage from "@/public/Landing/visionimage.svg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -124,7 +125,7 @@ const Roadmap = () => {
             Why We Are <span className="text-[#F342E8]">Building</span> Novus
           </h2>
           <p className="text-base md:text-lg lg:text-xl text-[#fff]/50 hover:text-white max-w-[700px]">
-            Education shouldn't be expensive, outdated, or out of reach. Novus is here to make Web3 learning practical,
+            Education shouldn&apos;t be expensive, outdated, or out of reach. Novus is here to make Web3 learning practical,
             instructor-led, and globally accessible — for anyone ready to build the future.
           </p>
         </motion.div>
