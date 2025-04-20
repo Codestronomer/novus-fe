@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import InstructorLedLearning from "@/public/Landing/instructor-ll.webp";
+import InstructorLedLearning from "@/public/Landing/instructor-II.webp";
 import OnChainCertification from "@/public/Landing/on-chain-cert.webp";
 import CryptoPoweredPayments from "@/public/Landing/cryptopowered.webp";
 import { motion } from "framer-motion";
