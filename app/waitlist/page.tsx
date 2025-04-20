@@ -33,6 +33,17 @@ const WaitlistPage = () => {
     console.log(email);
     try {
       toast.loading("Joining Waitlist");
+      const res = await axios.post("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          user_id: email,
+          connection_type: "email",
+        },
+      });
+      console.log(res);
 
       toast.dismiss();
       toast.success("Successfully joined waitlist");
