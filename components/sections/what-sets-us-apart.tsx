@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import InstructorLedLearning from "@/public/Landing/instructor-ll.svg";
-import OnChainCertification from "@/public/Landing/on-chain-cert.svg";
-import CryptoPoweredPayments from "@/public/Landing/cryptopowered.svg";
+import Image, { StaticImageData } from "next/image";
+import InstructorLedLearning from "@/public/Landing/instructor-ll.webp";
+import OnChainCertification from "@/public/Landing/on-chain-cert.webp";
+import CryptoPoweredPayments from "@/public/Landing/cryptopowered.webp";
 import { motion } from "framer-motion";
 
 type Feature = {
   title: React.ReactNode
   description: string
-  iconImg: string
+  iconImg: StaticImageData
 }
 const WhatSetsUsApart = () => {
   const features: Feature[] = [
