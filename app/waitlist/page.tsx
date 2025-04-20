@@ -1,12 +1,14 @@
 'use client'
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion, Variants } from 'motion/react';
 import Abstract3d from '@/public/abstract-3d.svg';
 import MetaMask from '@/public/metamask-logo.svg';
 import Novus from '@/public/novus-logo-and-name.svg';
 import OpenCampus from '@/public/open_campus_logo.svg.svg';
+import LoginButton from '@/components/OCLoginButton'
+import { useOCAuth } from '@opencampus/ocid-connect-js';
 
 const dotVariants: Variants = {
   jump: {
@@ -22,6 +24,16 @@ const dotVariants: Variants = {
 
 const WaitlistPage = () => {
   const [email, setEmail] = useState('');
+  const { isInitialized, authState, ocAuth } = useOCAuth();
+//loading state
+if (!isInitialized) {
+  return <div>Loading...</div>;
+}
+
+if (authState.error) {
+  return <div>Error: {authState.error.message}</div>;
+}
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,10 +100,12 @@ const WaitlistPage = () => {
               <Image src={MetaMask} alt="metamask" />
               Join with Metamask
             </Button>
-            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center" variant="secondary" size="lg">
-              <Image src={OpenCampus} alt="open campus" />
-              Join with OCID
-            </Button>
+            {authState.isAuthenticated ? (
+        <p>You are logged in! {JSON.stringify(ocAuth.getAuthState())}</p>
+        
+      ) : (
+        <LoginButton />
+      )}
           </div>
         </div>
       </div>

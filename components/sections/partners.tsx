@@ -1,22 +1,20 @@
-import Image from "next/image";
-import React from "react";
-import BaseBridge from "@/public/Landing/basebridge.svg";
-import Marquee from "react-fast-marquee";
+import React from 'react';
+import Image from "next/image"
+import BaseBridge from "@/public/Landing/basebridge.svg"
+import Marquee from "react-fast-marquee"
 
 const partners = [
   { id: 1, src: BaseBridge, alt: "Base Bridge partner" },
   { id: 2, src: BaseBridge, alt: "Base Bridge partner" },
   { id: 3, src: BaseBridge, alt: "Base Bridge partner" },
   { id: 4, src: BaseBridge, alt: "Base Bridge partner" },
-];
+]
 
 const Partners = () => {
   return (
     <section className="flex flex-col gap-8 w-full gradient-background py-8">
       <div className="mx-auto text-center">
-        <h2 className="text-2xl font-semibold text-white">
-          Trusted by Other Web3 Industry Leaders
-        </h2>
+        <h2 className="text-2xl font-semibold text-white">Trusted by Other Web3 Industry Leaders</h2>
       </div>
       <div
         className="flex flex-col gap-2 justify-center items-center max-w-7xl mx-auto"
@@ -27,26 +25,23 @@ const Partners = () => {
             "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
         }}
       >
-        <Marquee pauseOnHover={true} pauseOnClick={false} speed={100}>
+        {/* Increased speed from 100 to 150 for faster animation */}
+        <Marquee pauseOnHover={true} pauseOnClick={false} speed={150}>
           {[...partners, ...partners].map((partner) => (
             <Image
               key={partner.id}
-              src={partner.src}
+              src={partner.src || "/placeholder.svg"}
               alt={partner.alt}
               className="object-contain"
             />
           ))}
         </Marquee>
-        <Marquee
-          pauseOnHover={true}
-          pauseOnClick={false}
-          speed={100}
-          direction="right"
-        >
+        
+        <Marquee pauseOnHover={true} pauseOnClick={false} speed={150} direction="right">
           {[...partners, ...partners].map((partner) => (
             <Image
               key={partner.id}
-              src={partner.src}
+              src={partner.src || "/placeholder.svg"}
               alt={partner.alt}
               className="object-contain"
             />
@@ -54,7 +49,7 @@ const Partners = () => {
         </Marquee>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Partners;
+export default Partners
