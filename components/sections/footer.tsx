@@ -8,14 +8,14 @@ import Twitter from "@/public/Landing/twitter.svg";
 import LinkedIn from "@/public/Landing/linkedin.svg";
 import Youtube from "@/public/Landing/youtube.svg";
 import { Button } from "../ui/button";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.2, duration: 0.7 },
+    transition: { delay: i * 0.2, duration: 0.5 },
   }),
 };
 
