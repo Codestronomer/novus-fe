@@ -19,7 +19,7 @@ export default function Home() {
         </div>
         <Contact />
       </main>
-      <footer>
+      <footer className="bg-[rgba(173,170,252,0.18)]">
         <Footer />
       </footer>
     </div>

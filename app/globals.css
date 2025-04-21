@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overscroll-behavior-y: none;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

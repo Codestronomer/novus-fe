@@ -38,7 +38,7 @@ const Milestone = ({
         <h2 className="text-2xl md:text-3xl lg:text-[2rem] font-bold">
           {title}
         </h2>
-        <p className="max-w-sm ext-base md:text-lg lg:text-[20px] leading-relaxed md:leading-[30px] lg:leading-[34px] font-normal">
+        <p className="max-w-[250px] text-[20px] leading-relaxed md:leading-[30px] lg:leading-[34px] font-normal text-white/80">
           {content}
         </p>
       </div>
