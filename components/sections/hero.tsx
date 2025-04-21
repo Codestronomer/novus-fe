@@ -23,7 +23,7 @@ const Hero = () => {
 
         
         <motion.p
-          className="text-base lg:text-xl text-[#fff]/50 hover:text-white"
+          className="text-base lg:text-xl text-white/90"
           initial={{ y: -20, x: -50, opacity: 0 }}
           animate={{ y: 0, x: 0, opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.1 }}
