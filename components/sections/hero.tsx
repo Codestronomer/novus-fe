@@ -23,7 +23,7 @@ const Hero = () => {
 
         
         <motion.p
-          className="text-base lg:text-xl text-[#fff]/50 hover:text-white"
+          className="text-base lg:text-xl text-[#fff] hover:text-white"
           initial={{ y: -20, x: -50, opacity: 0 }}
           animate={{ y: 0, x: 0, opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.1 }}
@@ -48,9 +48,6 @@ const Hero = () => {
 
     
       <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
         className="w-full h-full lg:max-w-[40%] xl:max-w-full flex justify-center items-center"
       >
         <Image className="" src={HeroImg || "/placeholder.svg"} alt="" />

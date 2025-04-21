@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import InstructorLedLearning from "@/public/Landing/instructor-ll.webp";
+import InstructorLedLearning from "@/public/Landing/instructor-II.webp";
 import OnChainCertification from "@/public/Landing/on-chain-cert.webp";
 import CryptoPoweredPayments from "@/public/Landing/cryptopowered.webp";
 import { motion } from "framer-motion";
@@ -75,7 +75,7 @@ const WhatSetsUsApart = () => {
           >
             <div className="flex flex-col gap-3 md:gap-5 text-center md:text-left">
               {feature.title}
-              <p className="text-base md:text-lg lg:text-xl text-[#fff]/50 hover:text-white">{feature.description}</p>
+              <p className="text-base md:text-lg lg:text-xl text-[#fff] hover:text-white">{feature.description}</p>
             </div>
             <Image
               src={feature.iconImg || "/placeholder.svg"}
