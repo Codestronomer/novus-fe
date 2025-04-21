@@ -1,17 +1,16 @@
+'use client';
 
-"use client";
-import axios from "axios";
-import Image from "next/image";
-import React, {useState } from "react";
-import { Button } from "@/components/ui/button";
-import { motion, Variants } from "motion/react";
-import Abstract3d from "@/public/abstract-3d.svg";
-import MetaMask from "@/public/metamask-logo.svg";
-import Novus from "@/public/novus-logo-and-name.svg";
-import OpenCampus from "@/public/open_campus_logo.svg.svg";
-//import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { toast } from "sonner";
-//import { useAccount } from "wagmi";
+import React, { useState } from 'react';
+import axios from 'axios';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { motion, Variants } from 'motion/react';
+import { toast } from 'sonner';
+
+import Abstract3d from '@/public/abstract-3d.svg';
+import MetaMask from '@/public/metamask-logo.svg';
+import Novus from '@/public/novus-logo-and-name.svg';
+import OpenCampus from '@/public/open_campus_logo.svg.svg';
 
 const dotVariants: Variants = {
   jump: {
@@ -19,8 +18,8 @@ const dotVariants: Variants = {
     transition: {
       duration: 2,
       repeat: Infinity,
-      repeatType: "mirror",
-      ease: "easeInOut",
+      repeatType: 'mirror',
+      ease: 'easeInOut',
     },
   },
 };
@@ -30,45 +29,37 @@ const WaitlistPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email);
+    if (!email) return;
+
     try {
-      toast.loading("Joining Waitlist");
-      const res = await axios.post("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          user_id: email,
-          connection_type: "email",
-        },
-      });
-      console.log(res);
+      toast.loading('Joining Waitlist...');
+      const res = await axios.post('/api/waitlist', { email });
 
       toast.dismiss();
-      toast.success("Successfully joined waitlist");
+      toast.success(res.data.message || 'Successfully joined waitlist');
+      setEmail(''); // Clear the input
     } catch (error) {
+      toast.dismiss();
       if (axios.isAxiosError(error) && error.response) {
-        toast.dismiss();
-        toast.error(error.response.data.error);
+        toast.error(error.response.data.message);
       } else {
-        toast.dismiss();
-        toast.error("An error occured while joining waitlist");
+        toast.error('An error occurred while joining the waitlist');
       }
     }
   };
 
-  // useEffect(()=> {},[addres])
   return (
     <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
       {/* Logo */}
       <Image src={Novus} alt="novus" />
+
       {/* Bottom Blur */}
       <div className="absolute bottom-0 left-8 h-[500px] w-[450px] blur-[80px] rounded-full bg-gradient-to-tr from-transparent to-[#21FFD6]  opacity-20 pointer-events-none z-3" />
+
       {/* Top Blur */}
       <div className="absolute top-0 right-8 h-[500px] w-[450px] blur-[80px] rounded-full bg-gradient-to-tr from-transparent to-[#FFFFFF]  opacity-30 pointer-events-none z-3" />
 
-      {/* Abstract Art  */}
+      {/* Abstract Art */}
       <motion.div
         animate="jump"
         transition={{ staggerChildren: -0.2, staggerDirection: -1 }}
@@ -84,10 +75,10 @@ const WaitlistPage = () => {
 
       {/* Main Text & Form */}
       <div className="flex flex-col-reverse lg:flex-row items-center justify-center pt-[50px] gap-12 w-full">
-        {/* Left Text  */}
-        <div className="flex-1 pt-[150px] text-left mb-10 lg:mb-0 justify-self-center items-center lg:justify-self-start lg:self-start z-10 max-w-[600px]">
+        {/* Left Text */}
+        <div className="flex-1 pt-[150px] text-left mb-10 lg:mb-0 z-10 max-w-[600px]">
           <h2 className="text-4xl md:text-5xl lg:text-[65px] text-white font-bold">
-            MVP Coming{" "}
+            MVP Coming{' '}
             <span className="bg-gradient-to-t from-[#F36E15] to-[#74DB89] bg-clip-text text-transparent">
               Soon!
             </span>
@@ -118,15 +109,18 @@ const WaitlistPage = () => {
               type="email"
               placeholder="Enter your email address"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
               className="h-[45px] w-full outline-none bg-white placeholder-[#9F9F9F]/80 rounded-lg px-4"
             />
             <Button
               className="w-full h-[45px] rounded-xl bg-[#534CFF]"
               size="lg"
+              type="submit"
             >
               Submit
             </Button>
           </form>
+
           <div className="flex flex-col gap-4">
             <Button
               className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
@@ -136,7 +130,11 @@ const WaitlistPage = () => {
               <Image src={MetaMask} alt="metamask" />
               Join with Metamask
             </Button>
-            <Button className="w-full h-[45px] rounded-xl flex justify-center items-center" variant="secondary" size="lg">
+            <Button
+              className="w-full h-[45px] rounded-xl flex justify-center items-center"
+              variant="secondary"
+              size="lg"
+            >
               <Image src={OpenCampus} alt="open campus" />
               Join with OCID
             </Button>
