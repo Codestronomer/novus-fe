@@ -33,25 +33,25 @@ const Hero = () => {
         </motion.p>
 
        
-        <motion.div
+        <div
           className="flex justify-center lg:justify-start"
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
+          // initial={{ y: 30, opacity: 0 }}
+          // animate={{ y: 0, opacity: 1 }}
+          // transition={{ duration: 0.3, delay: 0.2 }}
         >
           <Link href="/waitlist">
             <Button className="bg-[#534CFF] w-[150px]" size="lg">
               Join Waitlist
             </Button>
           </Link>
-        </motion.div>
+        </div>
       </div>
 
     
-      <motion.div
-        initial={{ y: 50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
+      <div
+        // initial={{ y: 50, opacity: 0 }}
+        // animate={{ y: 0, opacity: 1 }}
+        // transition={{ duration: 0.4, delay: 0.2 }}
         className="w-full h-full lg:max-w-[40%] md:max-w-[50%] xl:max-w-full flex justify-center items-center"
       >
         <Image
@@ -60,7 +60,7 @@ const Hero = () => {
           priority
           quality={70}
           alt="" />
-      </motion.div>
+      </div>
     </section>
   )
 }
