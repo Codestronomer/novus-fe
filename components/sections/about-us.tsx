@@ -53,7 +53,7 @@ const AboutUs = () => {
             <span>Academy?</span>
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-base sm:text-lg lg:text-xl hover:text-[#fff]/50 text-white/80">
+          <motion.p variants={fadeUp} className="text-base sm:text-lg lg:text-xl text-white/90">
             Novus Academy+ is a Web3 platform offering instructor-led, practical courses with on-chain certificates and
             crypto-friendly payments. Learn real skills. Prove them. Own your progress.
           </motion.p>
