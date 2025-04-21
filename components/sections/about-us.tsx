@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import WhaiIsNa from "@/public/Landing/what-is-na.svg";
+import WhaiIsNa from "@/public/Landing/about-us.svg";
 import { motion } from "framer-motion";
 
 const containerVariants = {
