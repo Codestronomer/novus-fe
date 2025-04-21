@@ -1,6 +1,6 @@
 "use client";
 import { http } from "wagmi";
-import { eduMainnet, eduTestnet } from "./chains";
+import { eduMainnet, eduTestnet} from "./chain";
 import { createPublicClient } from "viem";
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { metaMaskWallet } from "@rainbow-me/rainbowkit/wallets";

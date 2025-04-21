@@ -6,7 +6,7 @@ import {
   RainbowKitAuthenticationProvider,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
-import { config } from "../lib/wallet-connection/wagmi";
+import { config } from "@/lib/wallet-connection/wagmi";
 import { authenticationAdapter } from "@/lib/wallet-connection/wallet-connect-adapter";
 
 const queryClient = new QueryClient();
