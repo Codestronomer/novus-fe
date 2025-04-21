@@ -8,8 +8,7 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <>
-    <section className="min-h-screen z-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[5.9375rem] max-w-7xl pt-16 lg:pt-28 px-4 lg:px-0 mx-auto">
+    <section className="z-10 flex h-full flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[5.9375rem] max-w-7xl pt-16 lg:pt-28 px-4 lg:px-0 mx-auto">
       <div className="flex flex-col gap-5 text-center lg:text-left">
         <motion.h1
           className="text-[2rem] leading-8 lg:text-[2.5rem] lg:leading-12 xl:text-[4rem] xl:leading-tight font-medium tracking-tighter text-white"
@@ -33,7 +32,7 @@ const Hero = () => {
           Join the next evolution of education — built for creators, developers, and curious minds in the Web3 space.
         </motion.p>
 
-       
+        
         <div
           className="flex justify-center lg:justify-start"
           // initial={{ y: 30, opacity: 0 }}
@@ -63,9 +62,6 @@ const Hero = () => {
           alt="" />
       </div>
     </section>
-
-    <div className="h-[1px]" />
-  </>
   )
 }
 
