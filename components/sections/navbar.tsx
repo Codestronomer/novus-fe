@@ -15,7 +15,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed bg-inherit w-full z-20 py-3 md:py-4 lg:py-5 2xl:py-6 top-0 right-0 left-0 backdrop-blur-sm text-white/90">
+    <nav className="fixed bg-inherit w-full z-20 py-3 md:py-4 lg:py-5 2xl:py-6 top-0 right-0 left-0 backdrop-blur-3xl text-white/90">
       <motion.div
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -54,7 +54,7 @@ const Navbar = () => {
 
         
           {isMenuOpen && (
-            <div className="absolute top-full right-0 left-0 mt-2 rounded-md shadow-lg z-50 py-4 lg:hidden">
+            <div className="absolute top-full right-0 left-0 mt-2 bg-white/20 backdrop-blur-3xl rounded-md shadow-lg z-50 py-4 lg:hidden">
               <ul className="flex flex-col space-y-4 px-6">
                 <li className="cursor-pointer hover:text-gray-300">Home</li>
                 <li className="cursor-pointer hover:text-gray-300">Features</li>
