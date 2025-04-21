@@ -44,7 +44,7 @@ const WhatSetsUsApart = () => {
     },
   ]
   return (
-    <section className="relative flex flex-col gap-10 md:gap-16 lg:gap-20 pt-10 md:pt-13 text-white pb-16 md:pb-[8.75rem] px-[10px]">
+    <section className="relative flex flex-col gap-10 md:gap-16 lg:gap-20 pt-10 md:pt-13 text-white pb-16 md:pb-[8.75rem] px-[10px]" id="features">
       <div className="absolute -top-10 md:-top-13 right-0 w-[200px] h-[240px] md:w-[319px] md:h-[382px] bg-[#ADAAFC]/14 rounded-full blur-3xl pointer-events-none z-2"></div>
       <motion.div
         initial={{ opacity: 0, y: 40 }}

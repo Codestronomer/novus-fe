@@ -76,7 +76,10 @@ const postLaunchMileStones: MileStoneItemType[] = [
 
 const Roadmap = () => {
   return (
-    <section className="relative p-8 flex flex-col gap-12">
+    <section
+      id="roadmap"
+      className="relative p-8 flex flex-col gap-12"
+    >
       {/* Watermark */}
       <div className="hidden md:flex lg:flex absolute inset-0 items-center justify-center pointer-events-none z-[1] mt-[50px]">
         <Image
@@ -118,16 +121,21 @@ const Roadmap = () => {
 
       {/* Vision Section */}
       <motion.div
-        className={`flex flex-col-reverse md:flex-row items-center justify-between gap-5 xl:gap-[5.5rem] max-w-7xl mx-auto px-4`}
+        id="whyus"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }} 
+        className={`flex flex-col-reverse md:flex-row items-center justify-between gap-5 xl:gap-[5.5rem] max-w-7xl mx-auto px-4 lg:px-[5rem]`}
       >
-        <motion.div className="flex flex-col gap-3 md:gap-5 text-center md:text-left" custom={3} variants={fadeUp}>
+        <motion.div 
+          custom={3}
+          variants={fadeUp}
+          className="flex flex-col gap-3 md:gap-5 text-center md:text-left lg:text-left space-between" 
+        >
           <h2 className="text-2xl md:text-3xl lg:text-[2rem] text-white">
             Why We Are <span className="text-[#F342E8]">Building</span> Novus
           </h2>
-          <p className="text-base md:text-lg lg:text-xl text-[#fff]/50 hover:text-white max-w-[700px]">
+          <p className="text-base md:text-lg lg:text-xl text-white/80 max-w-[450px]">
             Education shouldn&apos;t be expensive, outdated, or out of reach. Novus is here to make Web3 learning practical,
             instructor-led, and globally accessible — for anyone ready to build the future.
           </p>
@@ -136,7 +144,7 @@ const Roadmap = () => {
           <Image
             src={VisionImage || "/placeholder.svg"}
             alt="Illustration of Novus vision for inclusive Web3 education"
-            className="max-w-[20rem] md:max-w-full"
+            className="max-w-[17rem] md:max-w-full"
             layout="responsive"
           />
         </motion.div>

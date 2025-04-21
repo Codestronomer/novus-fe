@@ -15,7 +15,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="fixed bg-inherit w-full z-20 py-3 md:py-4 lg:py-5 2xl:py-6 top-0 right-0 left-0 backdrop-blur-sm">
+    <nav className="fixed bg-inherit w-full z-20 py-3 md:py-4 lg:py-5 2xl:py-6 top-0 right-0 left-0 backdrop-blur-sm text-white">
       <motion.div
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -39,10 +39,18 @@ const Navbar = () => {
 
        
           <ul className="hidden lg:flex text-[0.9375rem] leading-[1.125rem] gap-10">
-            <li className="cursor-pointer hover:text-gray-300">Home</li>
-            <li className="cursor-pointer hover:text-gray-300">Features</li>
-            <li className="cursor-pointer hover:text-gray-300">Why us</li>
-            <li className="cursor-pointer hover:text-gray-300">Roadmap</li>
+            <a href="#">
+              <li className="cursor-pointer hover:text-gray-300">Home</li>
+            </a>
+            <a href="#features">
+              <li className="cursor-pointer hover:text-gray-300">Features</li>
+            </a>
+            <a href="#whyus">
+              <li className="cursor-pointer hover:text-gray-300">Why us</li>
+            </a>
+            <a href="#roadmap">
+              <li className="cursor-pointer hover:text-gray-300">Roadmap</li>
+            </a>
           </ul>
 
          
@@ -54,15 +62,23 @@ const Navbar = () => {
 
         
           {isMenuOpen && (
-            <div className="absolute top-full right-0 left-0 mt-2 bg-white/80 backdrop-blur-3xl rounded-md shadow-lg z-50 py-4 lg:hidden">
+            <div className="absolute top-full right-0 left-0 mt-2 bg-[#0E0B1D] rounded-md shadow-lg z-50 py-4 lg:hidden">
               <ul className="flex flex-col space-y-4 px-6">
-                <li className="cursor-pointer hover:text-gray-300">Home</li>
-                <li className="cursor-pointer hover:text-gray-300">Features</li>
-                <li className="cursor-pointer hover:text-gray-300">Why us</li>
-                <li className="cursor-pointer hover:text-gray-300">Roadmap</li>
+                <a href="#">
+                  <li className="cursor-pointer hover:text-gray-300">Home</li>
+                </a>
+                <a href="#features">
+                  <li className="cursor-pointer hover:text-gray-300">Features</li>
+                </a>
+                <a href="#whyus">
+                  <li className="cursor-pointer hover:text-gray-300">Why us</li>
+                </a>
+                <a href="#roadmap">
+                  <li className="cursor-pointer hover:text-gray-300">Roadmap</li>
+                </a>
                 <li className="pt-2">
                   <Link href="/waitlist">
-                    <Button className="w-full bg-[#2F2B8E]   text-sm" size="lg">
+                    <Button className="w-full bg-white text-black text-sm" size="lg">
                       Join Waitlist
                     </Button>
                   </Link>
