@@ -47,7 +47,6 @@ const Hero = () => {
         </div>
       </div>
 
-    
       <div
         // initial={{ y: 50, opacity: 0 }}
         // animate={{ y: 0, opacity: 1 }}

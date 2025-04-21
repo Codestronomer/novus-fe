@@ -26,7 +26,7 @@ const Partners = () => {
         }}
       >
         {/* Increased speed from 100 to 150 for faster animation */}
-        <Marquee pauseOnHover={true} pauseOnClick={false} speed={150}>
+        <Marquee >
           {[...partners, ...partners].map((partner) => (
             <Image
               key={partner.id}
@@ -37,7 +37,7 @@ const Partners = () => {
           ))}
         </Marquee>
         
-        <Marquee pauseOnHover={true} pauseOnClick={false} speed={150} direction="right">
+        <Marquee direction="right">
           {[...partners, ...partners].map((partner) => (
             <Image
               key={partner.id}
