@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion, type Variants } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -55,13 +55,19 @@ const staggerContainer: Variants = {
 export default function UsersPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [users, setUsers] = useState<User[]>([])
-  const [isLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  // Simulate data loading
-  useState(() => {
+  // Fetch users on component mount
+  useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || ""}/api/waitlist`, { cache: "no-store" })
+        setIsLoading(true)
+        // Use relative URL for API calls to avoid CORS issues
+        const response = await fetch("/api/waitlist", {
+          cache: "no-store",
+          next: { revalidate: 0 },
+        })
 
         if (!response.ok) {
           throw new Error(`Failed to fetch users: ${response.status}`)
@@ -69,13 +75,20 @@ export default function UsersPage() {
 
         const data = await response.json()
         setUsers(data.users || [])
+        setError(null)
       } catch (error) {
         console.error("Error fetching users:", error)
-       return []
+        setError("Failed to load users. Please try again.")
+      } finally {
+        setIsLoading(false)
       }
     }
+
     fetchUsers()
-  }, )
+  }, [])
+
+  // Filter users based on search term
+  const filteredUsers = users.filter((user) => user.email.toLowerCase().includes(searchTerm.toLowerCase()))
 
   return (
     <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background bg-black">
@@ -153,7 +166,7 @@ export default function UsersPage() {
                 <CardDescription className="text-[#CED0E4]">Last Joined</CardDescription>
                 <CardTitle className="text-3xl flex items-center gap-2 text-white">
                   <Calendar className="text-[#21FFD6] h-5 w-5" />
-                  {users.length > 0 ? new Date(users[users.length - 1].createdAt).toLocaleDateString() : "N/A"}
+                  {users.length > 0 ? new Date(users[0].createdAt).toLocaleDateString() : "N/A"}
                 </CardTitle>
               </CardHeader>
             </Card>
@@ -194,10 +207,29 @@ export default function UsersPage() {
                     </div>
                   </div>
                 </div>
-              ) : users.length === 0 ? (
+              ) : error ? (
                 <div className="flex flex-col items-center justify-center py-16 text-center text-[#CED0E4]">
-                  <Users className="h-14 w-14 mb-4 text-[#534CFF]" />
-                  <p>No users yet.</p>
+                  <p className="text-red-400">{error}</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="mt-4 px-4 py-2 bg-[#534CFF] rounded-lg text-white"
+                  >
+                    Retry
+                  </button>
+                </div>
+              ) : filteredUsers.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-16 text-center text-[#CED0E4]">
+                  {searchTerm ? (
+                    <>
+                      <Search className="h-14 w-14 mb-4 text-[#534CFF]" />
+                      <p>No users match your search.</p>
+                    </>
+                  ) : (
+                    <>
+                      <Users className="h-14 w-14 mb-4 text-[#534CFF]" />
+                      <p>No users yet.</p>
+                    </>
+                  )}
                 </div>
               ) : (
                 <div className="overflow-x-auto">
@@ -205,12 +237,13 @@ export default function UsersPage() {
                     <TableHeader>
                       <TableRow className="border-white/10">
                         <TableHead className="text-[#CED0E4]">Email</TableHead>
+                        <TableHead className="text-[#CED0E4]">Twitter</TableHead>
                         <TableHead className="text-[#CED0E4]">Joined</TableHead>
                         <TableHead className="text-[#CED0E4] text-right">Status</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {users.map((user: User) => {
+                      {filteredUsers.map((user: User) => {
                         const joinedDate = new Date(user.createdAt)
                         const today = new Date()
                         const diffTime = Math.abs(today.getTime() - joinedDate.getTime())
