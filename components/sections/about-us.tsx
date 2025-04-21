@@ -36,7 +36,7 @@ const AboutUs = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      className="z-10 relative px-6 sm:px-10 md:px-16 lg:px-20 pt-[5.875rem] pb-13"
+      className="z-10 relative sm:px-10 md:px-16 lg:px-20 pt-[5.875rem] pb-13 flex items-center"
     >
     
       <div className="absolute top-0 right-0 w-[200px] h-[240px] sm:w-[250px] sm:h-[300px] md:w-[319px] md:h-[382px] bg-[#ADAAFC]/14 rounded-full blur-3xl pointer-events-none z-2"></div>
@@ -63,7 +63,14 @@ const AboutUs = () => {
           variants={fadeRight}
           className="w-full h-full max-w-[18rem] md:max-w-full flex justify-center items-center"
         >
-          <Image className="" src={WhaiIsNa || "/placeholder.svg"} alt="What is Novus Academy" />
+          <Image
+            width={400}
+            height={400}
+            priority
+            className="w-auto h-auto"
+            src={WhaiIsNa || "/placeholder.svg"}
+            alt="What is Novus Academy"
+          />
         </motion.div>
       </div>
 
