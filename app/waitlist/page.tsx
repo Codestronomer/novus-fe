@@ -49,7 +49,7 @@ const WaitlistPage = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
+    <div className="relative w-screen max-w-screen overflow-x-hidden min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
       {/* Logo */}
       <Image src={Novus} alt="novus" />
 

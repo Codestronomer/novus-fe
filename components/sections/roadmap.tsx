@@ -78,8 +78,11 @@ const Roadmap = () => {
   return (
     <section className="relative p-8 flex flex-col gap-12">
       {/* Watermark */}
-      <div className="hidden md:flex lg:flex absolute inset-0 items-center justify-center pointer-events-none z-[1] pt-[40px] mt-[90px]">
-        <Image src={NovusLogo || "/placeholder.svg"} alt="Novus Logo Background Watermark" />
+      <div className="hidden md:flex lg:flex absolute inset-0 items-center justify-center pointer-events-none z-[1] mt-[50px]">
+        <Image
+          src={NovusLogo || "/placeholder.svg"}
+          alt="Novus Logo Background Watermark"
+          className="max-w-[150px]" />
       </div>
 
       
@@ -101,7 +104,7 @@ const Roadmap = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl">
             Our <span className="text-[#F342E8]">Roadmap</span>
           </h2>
-          <h4 className="md:w-[55%] text-xl">
+          <h4 className="md:w-[55%] text-xl text-white/90">
             The roadmap illustrates what we&apos;re working on. We are continuously updating it based on your
             <span className="text-[#F342E8]"> feedback</span>.
           </h4>

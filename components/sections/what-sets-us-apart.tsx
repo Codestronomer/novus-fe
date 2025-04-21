@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-import InstructorLedLearning from "@/public/Landing/instructor-II.webp";
-import OnChainCertification from "@/public/Landing/on-chain-cert.webp";
-import CryptoPoweredPayments from "@/public/Landing/cryptopowered.webp";
+import InstructorLedLearning from "@/public/Landing/instructor.svg";
+import OnChainCertification from "@/public/Landing/on-chain-cert.svg";
+import CryptoPoweredPayments from "@/public/Landing/crypto.svg";
 import { motion } from "framer-motion";
 
 type Feature = {
@@ -44,7 +44,7 @@ const WhatSetsUsApart = () => {
     },
   ]
   return (
-    <section className="relative flex flex-col gap-10 md:gap-16 lg:gap-20 pt-10 md:pt-13 text-white pb-16 md:pb-[8.75rem]">
+    <section className="relative flex flex-col gap-10 md:gap-16 lg:gap-20 pt-10 md:pt-13 text-white pb-16 md:pb-[8.75rem] px-[10px]">
       <div className="absolute -top-10 md:-top-13 right-0 w-[200px] h-[240px] md:w-[319px] md:h-[382px] bg-[#ADAAFC]/14 rounded-full blur-3xl pointer-events-none z-2"></div>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -56,7 +56,7 @@ const WhatSetsUsApart = () => {
         <h2 className="text-3xl md:text-4xl lg:text-5xl">
           <span>What Sets </span> <span className="text-[#F342E8]">Us</span> <span>Apart</span>
         </h2>
-        <p className="text-lg md:text-xl">
+        <p className="text-lg md:text-xl text-white/80">
           <span>Everything you need to start and grow your Web3 career, guided by real</span>{" "}
           <span className="text-[#F342E8]">experts.</span>
         </p>
@@ -71,15 +71,15 @@ const WhatSetsUsApart = () => {
             transition={{ duration: 0.3, ease: "easeOut", delay: index * 0.1 }}
             className={`flex flex-col-reverse md:flex-row ${
               index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
-            } items-center justify-between gap-5 xl:gap-[5.5rem] max-w-7xl mx-auto px-4`}
+            } items-center justify-around gap-[80px] xl:gap-[5.5rem] max-w-7xl mx-auto px-4`}
           >
-            <div className="flex flex-col gap-3 md:gap-5 text-center md:text-left">
+            <div className="flex flex-col gap-3 md:gap-5 text-center md:text-left lg:text-left max-w-[400px]">
               {feature.title}
-              <p className="text-base md:text-lg lg:text-xl text-[#fff] hover:text-white">{feature.description}</p>
+              <p className="text-base md:text-lg lg:text-xl text-white/90 hover:text-[#fff]/50">{feature.description}</p>
             </div>
             <Image
               src={feature.iconImg || "/placeholder.svg"}
-              className="max-w-[20rem] md:max-w-full "
+              className="max-w-[20rem] md:max-w-[40%] rounded-lg"
               alt=""
               layout="responsive"
             />
