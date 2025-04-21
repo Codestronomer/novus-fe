@@ -29,7 +29,7 @@ const Footer = () => {
       <motion.div
         variants={fadeInUp}
         custom={0}
-        className="flex flex-wrap gap-6 lg:gap-4 justify-between text-sm"
+        className="flex flex-wrap justify-center md:justify-between gap-4 md:gap-6 text-sm"
       >
         <Link href="#">
           <p>Home</p>
@@ -40,7 +40,7 @@ const Footer = () => {
         <Link href="#">
           <p>About us</p>
         </Link>
-        <div className="w-fit">
+        <div className="w-fit hidden md:flex lg:flex">
           <Image src={Novus} alt="novus-academy" className="max-h-[42px] pb-2" />
         </div>
         <Link href="#">
