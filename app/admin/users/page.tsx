@@ -252,6 +252,7 @@ export default function UsersPage() {
                         return (
                           <TableRow key={user._id} className="border-white/10 hover:bg-[#534CFF]/10 transition">
                             <TableCell className="text-white">{user.email}</TableCell>
+                            
                             <TableCell className="text-white">
                               {user.address ? (
                                 <span className="text-[#F342E8]">{user.address}</span>
