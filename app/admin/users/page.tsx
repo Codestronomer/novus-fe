@@ -15,7 +15,7 @@ import Abstract3d from "@/public/abstract-3d.svg"
 interface User {
   _id: string
   email: string
-  twitter?: string
+ address?: string
   createdAt: string
 }
 
@@ -63,8 +63,8 @@ export default function UsersPage() {
     const fetchUsers = async () => {
       try {
         setIsLoading(true)
-        // Use relative URL for API calls to avoid CORS issues
-        const response = await fetch("/api/waitlist", {
+     
+        const response = await fetch(" https://novus-fe.vercel.app/api/waitlist", {
           cache: "no-store",
           next: { revalidate: 0 },
         })
@@ -150,10 +150,10 @@ export default function UsersPage() {
             <Card className="bg-white/10 backdrop-blur-md border-0 shadow-xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-br from-[#F342E8]/20 to-transparent opacity-50"></div>
               <CardHeader className="relative">
-                <CardDescription className="text-[#CED0E4]">Twitter Connected</CardDescription>
+                <CardDescription className="text-[#CED0E4]">Address Connected</CardDescription>
                 <CardTitle className="text-3xl flex items-center gap-2 text-white">
                   <ArrowUpRight className="text-[#F342E8] h-5 w-5" />
-                  {users.filter((user) => user.twitter).length}
+                  {users.filter((user) => user.address).length}
                 </CardTitle>
               </CardHeader>
             </Card>
@@ -237,7 +237,7 @@ export default function UsersPage() {
                     <TableHeader>
                       <TableRow className="border-white/10">
                         <TableHead className="text-[#CED0E4]">Email</TableHead>
-                        <TableHead className="text-[#CED0E4]">Twitter</TableHead>
+                        <TableHead className="text-[#CED0E4]">Address</TableHead>
                         <TableHead className="text-[#CED0E4]">Joined</TableHead>
                         <TableHead className="text-[#CED0E4] text-right">Status</TableHead>
                       </TableRow>
@@ -253,8 +253,8 @@ export default function UsersPage() {
                           <TableRow key={user._id} className="border-white/10 hover:bg-[#534CFF]/10 transition">
                             <TableCell className="text-white">{user.email}</TableCell>
                             <TableCell className="text-white">
-                              {user.twitter ? (
-                                <span className="text-[#F342E8]">@{user.twitter}</span>
+                              {user.address ? (
+                                <span className="text-[#F342E8]">{user.address}</span>
                               ) : (
                                 <span className="text-[#CED0E4]">-</span>
                               )}
