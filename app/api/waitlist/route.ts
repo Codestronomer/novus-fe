@@ -22,45 +22,80 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const email = body.email as string;
+    const { email, address } = body;
 
-    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+    // Validate at least one field is provided
+    if (!email && !address) {
+      return NextResponse.json(
+        { success: false, message: "Please provide email or wallet address" },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format if provided
+    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json(
         { success: false, message: "Please provide a valid email address" },
         { status: 400 }
       );
     }
 
+    // Validate address format if provided
+    if (address && !/^0x[a-fA-F0-9]{40}$/.test(address)) {
+      return NextResponse.json(
+        { success: false, message: "Invalid wallet address format" },
+        { status: 400 }
+      );
+    }
+
     await connectToDb();
 
-    const existingUser = await User.findOne({ email });
+    // Check for existing records using $or operator
+    const existingUser = await User.findOne({
+      $or: [
+        ...(email ? [{ email }] : []),
+        ...(address ? [{ address }] : [])
+      ]
+    });
+
     if (existingUser) {
+      const conflictField = existingUser.email ? "email" : "address";
       return NextResponse.json(
-        { success: false, message: "Email already registered" },
+        { success: false, message: `${conflictField} already registered` },
         { status: 409 }
       );
     }
 
-    // Create the new user
-    await User.create({ email });
-    
-    // Count users to get position
-    const users = await User.find().sort({ createdAt: -1 });
-    const position = users.length;
-    
-    // Send confirmation email using EmailJS
-    await emailjs.send(
-      process.env.EMAILJS_SERVICE_ID!,
-      process.env.EMAILJS_TEMPLATE_ID!,
-      { 
-        email: email,
-        position: position,
-        date: new Date().toLocaleDateString()
-      }
-    );
+    // Create new user with provided fields
+    const newUser = await User.create({
+      ...(email && { email }),
+      ...(address && { address })
+    });
+
+    // Get waitlist position
+    const totalUsers = await User.countDocuments();
+    const position = totalUsers;
+
+    // Send email only if email was provided
+    if (email) {
+      await emailjs.send(
+        process.env.EMAILJS_SERVICE_ID!,
+        process.env.EMAILJS_TEMPLATE_ID!,
+        { 
+          email: email,
+          position: position,
+          date: new Date().toLocaleDateString()
+        }
+      );
+    }
 
     return NextResponse.json(
-      { success: true, message: "Successfully joined waitlist" },
+      { 
+        success: true, 
+        message: "Successfully joined waitlist",
+        position,
+        user: { email, address }
+      },
       { status: 201 }
     );
   } catch (error) {

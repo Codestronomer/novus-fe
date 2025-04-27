@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { motion, Variants } from 'motion/react';
 import { toast } from 'sonner';
-
+import { useAccount } from 'wagmi';
 import Abstract3d from '@/public/abstract-3d.svg';
 import MetaMask from '@/public/metamask-logo.svg';
 import Novus from '@/public/novus-logo-and-name.svg';
@@ -26,7 +26,10 @@ const dotVariants: Variants = {
 
 const WaitlistPage = () => {
   const [email, setEmail] = useState('');
+  const { address, isConnected } = useAccount();
+  const [isConnecting, setIsConnecting] = useState(false);
 
+  //email submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -37,7 +40,7 @@ const WaitlistPage = () => {
 
       toast.dismiss();
       toast.success(res.data.message || 'Successfully joined waitlist');
-      setEmail(''); // Clear the input
+      setEmail(''); 
     } catch (error) {
       toast.dismiss();
       if (axios.isAxiosError(error) && error.response) {
@@ -47,6 +50,46 @@ const WaitlistPage = () => {
       }
     }
   };
+
+   // Handle wallet connection and submission
+   const handleWalletConnect = async () => {
+    setIsConnecting(true);
+    try {
+      // Assuming you have a function to connect to the wallet
+      // await connectWallet(); // Uncomment this line if you have a wallet connection function
+      toast.success('Wallet connected successfully!');
+    } catch (error) {
+      toast.error('Failed to connect wallet');
+    }
+    setIsConnecting(false);
+  };
+
+  useEffect(() => {
+    if (isConnecting && isConnected && address) {
+      handleWalletSubmit();
+      setIsConnecting(false);
+    }
+  }, [isConnecting, isConnected, address]);
+
+  const handleWalletSubmit = async () => {
+    if (!address) return;
+
+    try {
+      toast.loading('Joining with wallet...');
+      const res = await axios.post('/api/waitlist', { address });
+      
+      toast.dismiss();
+      toast.success(res.data.message || 'Wallet registered successfully');
+    } catch (error) {
+    toast.dismiss();
+    if (axios.isAxiosError(error) && error.response) {
+      toast.error(error.response.data.message);
+    } else {
+      toast.error('An error occurred while registering wallet');
+    }
+    }
+  };
+
 
   return (
     <div className="relative w-screen max-w-screen overflow-x-hidden min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
@@ -126,14 +169,16 @@ const WaitlistPage = () => {
               className="w-full h-[45px] rounded-xl flex justify-center items-center gap-2"
               variant="secondary"
               size="lg"
+              onClick={isConnected ? handleWalletSubmit : handleWalletConnect}
             >
               <Image src={MetaMask} alt="metamask" />
-              Join with Metamask
+              {isConnected ? 'Submit Wallet' : 'Join with Metamask'}
             </Button>
             <Button
               className="w-full h-[45px] rounded-xl flex justify-center items-center"
               variant="secondary"
               size="lg"
+              onClick={isConnected ? handleWalletSubmit : handleWalletConnect}
             >
               <Image src={OpenCampus} alt="open campus" />
               Join with OCID

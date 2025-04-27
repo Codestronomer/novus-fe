@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased max-w-screen w-screen overflow-x-hidden`}
+        className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased max-w-screen w-screen overflow-x-hidden gradient-background`}
       >
         <Providers>
           <Toaster richColors />
