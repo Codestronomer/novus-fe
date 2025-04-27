@@ -66,11 +66,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Create new user with provided fields
-    const newUser = await User.create({
-      ...(email && { email }),
-      ...(address && { address })
-    });
 
     // Get waitlist position
     const totalUsers = await User.countDocuments();

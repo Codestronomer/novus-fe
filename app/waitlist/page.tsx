@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { motion, Variants } from 'motion/react';
 import { toast } from 'sonner';
-import { useAccount } from 'wagmi';
+import { useAccount, useConnect } from 'wagmi';
 import Abstract3d from '@/public/abstract-3d.svg';
 import MetaMask from '@/public/metamask-logo.svg';
 import Novus from '@/public/novus-logo-and-name.svg';
@@ -27,9 +27,10 @@ const dotVariants: Variants = {
 const WaitlistPage = () => {
   const [email, setEmail] = useState('');
   const { address, isConnected } = useAccount();
+  const { connect, connectors } = useConnect();
   const [isConnecting, setIsConnecting] = useState(false);
 
-  //email submit
+  // Email submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -51,14 +52,41 @@ const WaitlistPage = () => {
     }
   };
 
-   // Handle wallet connection and submission
-   const handleWalletConnect = async () => {
+  // Handle wallet submission
+  const handleWalletSubmit = useCallback(async () => {
+    if (!address) return;
+
+    try {
+      toast.loading('Joining with wallet...');
+      const res = await axios.post('/api/waitlist', { address });
+      
+      toast.dismiss();
+      toast.success(res.data.message || 'Wallet registered successfully');
+    } catch (error) {
+      toast.dismiss();
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('An error occurred while registering wallet');
+      }
+    }
+  }, [address]);
+
+  // Handle wallet connection
+  const handleWalletConnect = async () => {
     setIsConnecting(true);
     try {
-      // Assuming you have a function to connect to the wallet
-      // await connectWallet(); // Uncomment this line if you have a wallet connection function
-      toast.success('Wallet connected successfully!');
-    } catch (error) {
+      // Find the MetaMask connector
+      const connector = connectors.find(c => c.id === 'metaMask');
+      
+      if (connector) {
+        await connect({ connector });
+        toast.success('Wallet connected successfully!');
+      } else {
+        toast.error('MetaMask connector not found');
+      }
+    } catch {
+      // Empty catch block with no parameter
       toast.error('Failed to connect wallet');
     }
     setIsConnecting(false);
@@ -69,27 +97,7 @@ const WaitlistPage = () => {
       handleWalletSubmit();
       setIsConnecting(false);
     }
-  }, [isConnecting, isConnected, address]);
-
-  const handleWalletSubmit = async () => {
-    if (!address) return;
-
-    try {
-      toast.loading('Joining with wallet...');
-      const res = await axios.post('/api/waitlist', { address });
-      
-      toast.dismiss();
-      toast.success(res.data.message || 'Wallet registered successfully');
-    } catch (error) {
-    toast.dismiss();
-    if (axios.isAxiosError(error) && error.response) {
-      toast.error(error.response.data.message);
-    } else {
-      toast.error('An error occurred while registering wallet');
-    }
-    }
-  };
-
+  }, [isConnecting, isConnected, address, handleWalletSubmit]);
 
   return (
     <div className="relative w-screen max-w-screen overflow-x-hidden min-h-screen py-[40px] px-4 sm:px-8 lg:px-[110px] gradient-background">
