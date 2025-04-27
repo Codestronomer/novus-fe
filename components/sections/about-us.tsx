@@ -32,11 +32,12 @@ const fadeUp = {
 const AboutUs = () => {
   return (
     <motion.section
+      id="about-us"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
-      className="z-10 relative sm:px-10 md:px-16 lg:px-20 pt-[5.875rem] pb-13 flex items-center"
+      className="z-10 relative sm:px-10 md:px-16 lg:px-16 pt-[5.875rem] pb-13 flex items-center"
     >
     
       <div className="absolute top-0 right-0 w-[200px] h-[240px] sm:w-[250px] sm:h-[300px] md:w-[319px] md:h-[382px] bg-[#ADAAFC]/14 rounded-full blur-3xl pointer-events-none z-2"></div>

@@ -31,22 +31,22 @@ const Footer = () => {
         custom={0}
         className="flex flex-wrap justify-center md:justify-between gap-4 md:gap-6 text-sm"
       >
-        <Link href="#">
+        <Link href="#home">
           <p>Home</p>
         </Link>
-        <Link href="#">
+        <Link href="#features">
           <p>Features</p>
         </Link>
-        <Link href="#">
+        <Link href="#about-us">
           <p>About us</p>
         </Link>
         <div className="w-fit hidden md:flex lg:flex">
           <Image src={Novus} alt="novus-academy" className="max-h-[42px] pb-2" />
         </div>
-        <Link href="#">
+        <Link href="#roadmap">
           <p>Roadmap</p>
         </Link>
-        <Link href="#">
+        <Link href="#whyus">
           <p>Why us</p>
         </Link>
         <Link href="/waitlist">

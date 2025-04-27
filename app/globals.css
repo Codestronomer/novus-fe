@@ -8,6 +8,7 @@
 body {
   touch-action: manipulation;
   overscroll-behavior-y: none;
+  /* background-color: gradient; */
 }
 
 @custom-variant dark (&:is(.dark *));

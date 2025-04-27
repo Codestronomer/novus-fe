@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <section className="z-10 flex h-full flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[5.9375rem] max-w-7xl pt-16 lg:pt-28 px-4 lg:px-0 mx-auto">
+    <section className="z-10 flex h-full flex-col lg:flex-row items-center justify-between gap-10 lg:gap-[5.9375rem] max-w-7xl pt-16 lg:pt-28 px-4 md:px-7 lg:px-[5rem] mx-auto" id="home">
       <div className="flex flex-col gap-5 text-center lg:text-left">
         <motion.h1
           className="text-[2rem] leading-8 lg:text-[2.5rem] lg:leading-12 xl:text-[4rem] xl:leading-tight font-medium tracking-tighter text-white"
